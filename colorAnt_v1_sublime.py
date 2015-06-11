@@ -126,23 +126,12 @@ class myframe(wx.Frame):
 
         self.SetSizer(self.myGridSizer)
 
-        '''
-        #Average ground panel
-        self.textRGB=wx.Panel(self, size=(60, 22))
-        self.textRGB.SetBackgroundColour("grey")
-        self.myGridSizer.Add(self.textRGB, pos=(6, 4), span=(1,1))#, flag=wx.ALL)
         
-        #text application
-        self.text1 = wx.StaticText(self.textRGB, label="Color 1", style=2, size=(50, -1))
+        #Average panel text
+        self.avgPanelText = wx.StaticText(self.average1, label="", style=2,size=(350,-1))
         font = wx.Font(10, wx.DECORATIVE, wx.ITALIC, wx.BOLD, wx.NORMAL)
-        self.text1.SetFont(font)
+        self.average1.SetFont(font)
 
-        self.titleSizer = wx.BoxSizer()
-        self.titleSizer.Add(self.text1, flag=wx.CENTER|wx.LEFT|wx.ALIGN_RIGHT, border=10)
-        self.textRGB.SetSizer(self.titleSizer)
-
-        self.SetSizer(self.myGridSizer)
-        '''
 
         #DATA ENTRY
         #Color 1 entry
@@ -190,8 +179,6 @@ class myframe(wx.Frame):
         self.set_Color4Value()
         self.set_Color5Value()
         
-        self.Refresh()
-
         self.set_AvgColor()
 
         self.Refresh()
@@ -266,19 +253,19 @@ class myframe(wx.Frame):
     def set_AvgColor(self):
         R_Avg = (region.set_Color1Value()[0] + region.set_Color2Value()[0] + region.set_Color3Value()[0] + region.set_Color4Value()[0] + region.set_Color5Value()[0]) / 5
         print R_Avg
-        print type(R_Avg)
+        #print type(R_Avg)
 
         G_Avg = (region.set_Color1Value()[1] + region.set_Color2Value()[1] + region.set_Color3Value()[1] + region.set_Color4Value()[1] + region.set_Color5Value()[1]) / 5
         print G_Avg
-        print type(G_Avg)
+        #print type(G_Avg)
 
         B_Avg = (region.set_Color1Value()[2] + region.set_Color2Value()[2] + region.set_Color3Value()[2] + region.set_Color4Value()[2] + region.set_Color5Value()[2]) / 5
         print B_Avg
-        print type(B_Avg)
+        #print type(B_Avg)
 
         self.average1.SetBackgroundColour((R_Avg,G_Avg,B_Avg))
+        self.avgPanelText = wx.StaticText(self.average1, label=str(R_Avg) + ", " + str(G_Avg) + ", " + str(B_Avg), style=2, size=(350,-1))
         #print "Avg Call"
-
 
 
 #MAIN LOOP
@@ -296,6 +283,6 @@ if __name__ == "__main__":
 
     #average call
     region.set_AvgColor()
-
+    
     region.Refresh()
     app.MainLoop()
