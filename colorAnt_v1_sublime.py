@@ -189,8 +189,13 @@ class myframe(wx.Frame):
         self.set_Color3Value()
         self.set_Color4Value()
         self.set_Color5Value()
+        
         self.Refresh()
-        print "Enter Call"
+
+        self.set_AvgColor()
+
+        self.Refresh()
+        #print "Enter Call"
 
 
     #COLOR 1 METHOD
@@ -203,9 +208,9 @@ class myframe(wx.Frame):
 
         self.scheme1.SetBackgroundColour((R,G,B))
 
+        #print "C1 Call"
         return R, G, B
-        #print "this was called"
-
+        
     #COLOR 2 METHOD
     def set_Color2Value(self):
         value = str(self.entry2.GetValue())
@@ -216,9 +221,9 @@ class myframe(wx.Frame):
 
         self.scheme2.SetBackgroundColour((R,G,B))
 
+        #print "C2 Call"
         return R, G, B
-        #print "this was called"
-
+        
     #COLOR 3 METHOD
     def set_Color3Value(self):
         value = str(self.entry3.GetValue())
@@ -272,6 +277,7 @@ class myframe(wx.Frame):
         print type(B_Avg)
 
         self.average1.SetBackgroundColour((R_Avg,G_Avg,B_Avg))
+        #print "Avg Call"
 
 
 
